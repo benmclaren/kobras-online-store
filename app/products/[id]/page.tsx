@@ -2,6 +2,7 @@ import Image from "next/image";
 import { SearchParamTypes } from "@/types/SearchParamTypes";
 import formatPrice from "@/util/PriceFormat";
 
+// product specific page 
 export default async function Product({searchParams}: SearchParamTypes){
   console.log(searchParams)
   return(
