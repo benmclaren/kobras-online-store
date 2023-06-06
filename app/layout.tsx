@@ -3,6 +3,7 @@ import Nav from './components/Nav'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { get } from 'http'
+import Hydrate from './components/Hydrate'
 
 export const metadata = {
   title: 'Create Next App',
@@ -20,8 +21,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className='mx-64'>
         {/* {Passing nav the user and when the session expires} */}
-        <Nav user={session?.user} expires={session?.expires as string}/>
-        {children}
+        <Hydrate>
+          <Nav user={session?.user} expires={session?.expires as string}/>
+          {children}
+        </Hydrate>
       </body>
     </html>
   )
