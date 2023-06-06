@@ -19,7 +19,7 @@ export default function Nav({ user }: Session){
       </Link>
       <ul className="flex items-center gap-12">
         {/* If user is not signed in then show btn to sign in */}
-        <li className="flex items-center text-3xl relative cursor-pointer">
+        <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
           {/*  react shoping cart icon */}
           <AiFillShopping />
           <span className="bg-teal-700 text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex items-center justify-center">
@@ -43,6 +43,7 @@ export default function Nav({ user }: Session){
           </li>
         )}
       </ul>
+      {/* If cart is open then show it on the screen */}
       {cartStore.isOpen && <Cart />}
     </nav>
   )

@@ -3,7 +3,13 @@
 import Image from "next/image"
 import { useCartStore } from "@/store"
 
+// The physical cart UI
 export default function Cart() {
   const cartStore = useCartStore()
-  cartStore.isOpen
+  console.log(cartStore.isOpen)
+  return (
+    <div>
+      <h1>Cart</h1>
+    </div>
+  )
 }

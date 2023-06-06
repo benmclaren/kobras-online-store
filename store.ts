@@ -13,15 +13,19 @@ type CartItem = {
 }
 
 type CartState = {
-  isOpen: boolean,
+  isOpen: boolean
   cart: CartItem[]
+  toggleCart: () => void
 }
 
 export const useCartStore = create<CartState>() (
-  persist((set) => ({
-    cart: [],
-    isOpen: false
-  }),
+  persist(
+    (set) => ({
+      cart: [],
+      isOpen: false,
+      // modify isOpen to be opposite of what it is. Toggles true and false
+      toggleCart: () => set((state) => ({isOpen: !state.isOpen})),
+    }),
     { name: "cart-store" }
   )
 )
