@@ -2,8 +2,6 @@ import { log } from "console"
 import Stripe from "stripe"
 import Product from "./components/Product"
 
-// For accessing the products stored on my stripe account
-
 const getProducts = async () => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2022-11-15",
@@ -14,7 +12,7 @@ const getProducts = async () => {
   const productsWithPrices = await Promise.all(
     products.data.map(async (product) => {
       const prices = await stripe.prices.list({product: product.id})
-      const features = product.metadata.features || ""  // Extract the features content from the metadata
+      const features = product.metadata.features || ""  // Extract the features content rom the metadata
       return{
         id: product.id,
         name: product.name,
@@ -28,8 +26,6 @@ const getProducts = async () => {
   )
   return productsWithPrices
 }
-
-// maps over the products returned by the getproducts() function and displays them on the page calling the Product function
 
 export default async function Home() {
   const products = await getProducts()

@@ -4,7 +4,7 @@ import { ProductType } from "@/types/ProductType"
 import Link from "next/link"
 import { link } from "fs"
 
-//  ProductType specifies type of data each arguemtn should be
+//  ProductType specifies type of data each argument should be
 export default function Product({name, image, unit_amount, id, description, metadata}: ProductType){
   // extracting the features content from metadata
   const { features } = metadata
