@@ -5,7 +5,7 @@ import AddCart from "./AddCart";
 
 
 export default async function Product({searchParams}: SearchParamTypes){
-  console.log(searchParams)
+  // console.log(searchParams)
   return(
     <div className="flex justify-between gap-24 p-12 text-gray-700">
       <Image

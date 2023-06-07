@@ -7,8 +7,8 @@ import formatPrice from "@/util/PriceFormat"
 // The physical cart UI
 export default function Cart() {
   const cartStore = useCartStore()
-  console.log(cartStore.isOpen)
-  console.log(cartStore)
+  // console.log(cartStore.isOpen)
+  // console.log(cartStore)
 
   return (
     <div 
