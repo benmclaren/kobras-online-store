@@ -12,6 +12,12 @@ export default function Cart() {
   // console.log(cartStore.isOpen)
   // console.log(cartStore)
 
+  const totalPrice = cartStore.cart.reduce((acc, item) => {
+    return acc + item.unit_amount * item.quantity
+    console.log(item)
+  }, 0)
+  // 0 is starting value
+
   return (
     <div 
       onClick={() => cartStore.toggleCart()}
@@ -64,6 +70,10 @@ export default function Cart() {
             </div>
           </div>
         ))}
+        {/* checkout and total */}
+        {cartStore.cart.length >= 1 && (
+          <p>Total: {formatPrice(totalPrice)}</p>
+        )} 
         {cartStore.cart.length > 0 && (
           <button className="py-2 mt-4 bg-teal-700 w-full rounded-md text-white">
             Checkout 
