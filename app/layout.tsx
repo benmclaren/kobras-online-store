@@ -24,7 +24,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       {/* adding global font */}
-      <body className={`mx-64 ${roboto.className}`}>
+      <body className={`mx-4 lg:mx-48 ${roboto.className}`}>
         {/* {Passing nav the user and when the session expires} */}
         <Hydrate>
           <Nav user={session?.user} expires={session?.expires as string}/>
