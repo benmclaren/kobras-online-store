@@ -62,6 +62,7 @@ export const useCartStore = create<CartState>() (
           // remove item from cart
           // filteredCart returns items thats id does not match the original id
           const filteredCart = state.cart.filter((cartItem) => cartItem.id !== item.id)
+          console.log(filteredCart)
           return { cart: filteredCart }
         }
       })
