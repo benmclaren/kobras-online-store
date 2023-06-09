@@ -20,6 +20,10 @@ type CartState = {
   toggleCart: () => void
   addProduct: (item: CartItem) => void
   removeProduct: (item: CartItem) => void
+  paymentIntent: string
+  setPaymentIntent: (val:string) => void
+  onCheckout: string
+  setCheckout: (val:string) => void
 }
 
 export const useCartStore = create<CartState>() (
@@ -28,6 +32,9 @@ export const useCartStore = create<CartState>() (
     (set) => ({
       cart: [],
       isOpen: false,
+      paymentIntent: "",
+      // this is for when you clikc on the checkout button and want to render a different component
+      onCheckout: "cart",
       // modify isOpen to be opposite of what it is. Toggles true and false
       toggleCart: () => set((state) => ({isOpen: !state.isOpen})),
       addProduct: (item) => set((state) => {
@@ -65,7 +72,9 @@ export const useCartStore = create<CartState>() (
           console.log(filteredCart)
           return { cart: filteredCart }
         }
-      })
+      }),
+      setPaymentIntent: (val) => set((state) => ({paymentIntent: val})),
+      setCheckout: (val) => set((state) => ({onCheckout: val})),
     }),
     // custom name of the data
     { name: "cart-store" }
