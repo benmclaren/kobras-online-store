@@ -10,6 +10,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 
 export default function CHeckout(){
   const cartStore = useCartStore()
+  // clientSecret is a key unique to the individual
   const [clientSecret, setClientSecret] = useState("")
 
   useEffect(() => {
@@ -18,9 +19,18 @@ export default function CHeckout(){
       method: "POST",
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({
-        items: CartStore.cart,
+        items: cartStore.cart,
         payment_intent_id: cartStore.paymentIntent,
       })
+    }).then((res) => {
+      // this is where client scetre and payment intent associated with it will go
+      console.log(res)
     })
   },[])
+
+  return (
+    <div>
+      <h1>Checkout</h1>
+    </div>
+  )
 }
