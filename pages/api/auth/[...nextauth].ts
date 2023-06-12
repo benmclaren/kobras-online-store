@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
@@ -7,7 +7,7 @@ import Stripe from "stripe";
 const prisma = new PrismaClient();
 
 // Allows user sign in through google
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -36,6 +36,13 @@ export const authOptions = {
       })
     },
   },
+  // This is so you can get back the id's when you hit checkout
+  callbacks: {
+    async session({session, token, user}){
+      session.user = user
+      return session
+    }
+  }
 };
 
 export default NextAuth(authOptions)
