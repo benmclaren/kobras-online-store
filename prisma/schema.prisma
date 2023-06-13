@@ -59,7 +59,7 @@ model Order {
   status          String
   createdDate     DateTime  @default(now())
   paymentIntendId String?   @unique
-  Products        Product[]
+  products        Product[]
 }
 
 // many to many relationship between Order and Product
