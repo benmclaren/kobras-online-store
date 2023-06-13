@@ -43,6 +43,17 @@ model User {
   accounts         Account[]
   sessions         Session[]
   stripeCustomerId String?
+  orders           Order[]
+}
+
+// one to many connection. User has many orders
+
+model Order {
+  // this generates a unique id
+  id     String @id @default(cuid())
+  // This is how we connect the orders to the user
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }
 
 model VerificationToken {

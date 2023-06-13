@@ -1,3 +1,5 @@
+// This is for connecting the items in the cart with a stripe payment
+
 import Stripe from "stripe"
 import { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth"
@@ -33,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     currency: 'gbp',
     status: 'pending',
     // comes from req.body
-    paymentIntentId: payment_intent_id
+    paymentIntentId: payment_intent_id,
     products: {
       create: items.map((item) => ({
         name: item.name,
@@ -44,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     },
   }
 
-
+  // successful
   res.status(200).json({ userSession })
   return 
 
