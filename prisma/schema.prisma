@@ -50,10 +50,16 @@ model User {
 
 model Order {
   // this generates a unique id
-  id     String @id @default(cuid())
-  // This is how we connect the orders to the user
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
+  id              String    @id @default(cuid())
+  // This is how we connect the orders to the user. The userId is going to connect and reference the user id in the User model
+  user            User      @relation(fields: [userId], references: [id])
+  userId          String
+  amount          Float
+  currency        String
+  status          String
+  createdDate     DateTime  @default(now())
+  paymentIntendId String?   @unique
+  Products        Product[]
 }
 
 model VerificationToken {
