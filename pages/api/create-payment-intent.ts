@@ -34,6 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // if they are logged in then we extract data from the body
   // 4. EXTRACTING THE DATA. ITEMS IS WHAT IS CURRENTLY IN CART AND PAYMENT_INTENT_ID IS EMPTY STRINGS
   const { items, payment_intent_id } = req.body
+  console.log(items, payment_intent_id)
 
   // 5. Create the order data. this is all Prisma code 
   const orderData = {
@@ -46,8 +47,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     products: {
       create: items.map((item) => ({
         name: item.name,
-        description: item.description,
-        unit_amount: item.unit_amount,
+        description: item.description || null,
+        unit_amount: parseFloat(item.unit_amount),
         image: item.image,
         quantity: item.quantity
       })),
@@ -80,8 +81,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             deleteMany: {},
             create: items.map((item) => ({
               name: item.name,
-              description: item.description,
-              unit_amount: item.unit_amount,
+              description: item.description || null,
+              unit_amount: parseFloat(item.unit_amount),
               image: item.image,
               quantity: item.quantity 
             })),
@@ -103,10 +104,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const newOrder = await prisma.order.create({
       data: orderData
     })
+    // successful sending pack the paymen intent id to frontend
+    res.status(200).json({ paymentIntent})
+    return
   }
-
-  
-  // successful sending pack the paymen intent id to frontend
-  res.status(200).json({ payment_intent_id})
-  return
 }

@@ -6,7 +6,7 @@ import { useCartStore } from '@/store'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-// need the NEXT>PUBLIC as we are rendering on client side.Not needed when server component
+// need the NEXT_PUBLIC as we are rendering on client side.Not needed when server component
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
 export default function CHeckout(){
