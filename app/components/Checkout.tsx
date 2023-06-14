@@ -26,13 +26,14 @@ export default function CHeckout(){
       })
     }).then((res) => {
       // this is where client scetre and payment intent associated with it will go
-      console.log(res)
+      // console.log(res)
       if(res.status === 403){
         return router.push('/api/auth/signin')
       }
       return res.json()
     }).then((data) => {
-      console.log(data)
+      setClientSecret(data.paymentIntent.client_secret)
+      cartStore.setPaymentIntent(data.paymentIntent_id)
     })
   },[])
 
