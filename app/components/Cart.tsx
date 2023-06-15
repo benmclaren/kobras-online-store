@@ -34,12 +34,22 @@ export default function Cart() {
         onClick={(e) => e.stopPropagation()} 
         className="bg-white absolute right-0 top-0 h-screen p-12 overflow-y-scroll text-gray-70 w-full lg:w-2/5"
       >
-        <button 
-          className="text-sm font-bold pb-12"
-          onClick={() => cartStore.toggleCart()}
-        >
-          Back to store 🏃‍♀️
-        </button>
+        {cartStore.onCheckout === "cart" && (
+          <button 
+            className="text-sm font-bold pb-12"
+            onClick={() => cartStore.toggleCart()}
+          >
+            Back to store 🏃‍♀️
+          </button>
+        )}
+        {cartStore.onCheckout === "checkout" && (
+          <button 
+            className="text-sm font-bold pb-12"
+            onClick={() => cartStore.setCheckout('cart')}
+          >
+            Check your cart 🛒
+          </button>
+        )}
         {/* cart items */}
         { cartStore.onCheckout === 'cart' && (
         <>
@@ -90,16 +100,19 @@ export default function Cart() {
           </>
         )}
         {/* checkout and total */}
-        <motion.div layout>
-          {cartStore.cart.length >= 1 && (
-            <p>Total: {formatPrice(totalPrice)}</p>
-          )} 
-          {cartStore.cart.length > 0 && (
-            <button onClick={() => cartStore.setCheckout("checkout")} className="py-2 mt-4 bg-teal-700 w-full rounded-md text-white">
+        {cartStore.cart.length > 0 && cartStore.onCheckout === "cart" ? (
+          <motion.div layout>
+            {cartStore.cart.length >= 1 && (
+              <p>Total: {formatPrice(totalPrice)}</p>
+            )} 
+            <button 
+              onClick={() => cartStore.setCheckout("checkout")} 
+              className="py-2 mt-4 bg-teal-700 w-full rounded-md text-white"
+            >
               Checkout 
             </button>
-          )}
-        </motion.div>
+          </motion.div>
+        ) : null}
         { cartStore.onCheckout === 'checkout' && <Checkout /> }
         <AnimatePresence>
           {!cartStore.cart.length && (
