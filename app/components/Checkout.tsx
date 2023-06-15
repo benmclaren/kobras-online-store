@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 // need the NEXT_PUBLIC as we are rendering on client side.Not needed when server component
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
-export default function CHeckout(){
+export default function Checkout(){
   const cartStore = useCartStore()
   // clientSecret is a key unique to the individual
   const [clientSecret, setClientSecret] = useState("")
@@ -23,17 +23,17 @@ export default function CHeckout(){
       body: JSON.stringify({
         items: cartStore.cart,
         payment_intent_id: cartStore.paymentIntent,
-      })
+      }),
     }).then((res) => {
-      // this is where client scetre and payment intent associated with it will go
-      // console.log(res)
+      // this is where client secret and payment intent associated with it will go
+      console.log(res)
       if(res.status === 403){
         return router.push('/api/auth/signin')
       }
       return res.json()
     }).then((data) => {
       setClientSecret(data.paymentIntent.client_secret)
-      cartStore.setPaymentIntent(data.paymentIntent_id)
+      cartStore.setPaymentIntent(data.paymentIntent.id)
     })
   },[])
 

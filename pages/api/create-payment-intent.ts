@@ -37,7 +37,9 @@ export default async function handler(
   // if they are logged in then we extract data from the body
   // 4. EXTRACTING THE DATA. ITEMS IS WHAT IS CURRENTLY IN CART AND PAYMENT_INTENT_ID IS EMPTY STRINGS
   const { items, payment_intent_id } = req.body
-  console.log(items, payment_intent_id)
+  console.log(req.body)
+  console.log(payment_intent_id)
+
 
   // 5. Create the order data. this is all Prisma code 
   const orderData = {
@@ -48,7 +50,7 @@ export default async function handler(
     // comes from req.body
     paymentIntentId: payment_intent_id,
     products: {
-      create: items.map((item) => ({
+      create: items.map((item: any) => ({
         name: item.name,
         description: item.description || null,
         unit_amount: parseFloat(item.unit_amount),
@@ -60,7 +62,7 @@ export default async function handler(
 
   // Check if payment intent exists just update the order. First time it wotn exist so it goes to the else section to generate a new order
   if(payment_intent_id){
-    console.log(payment_intent_id)
+    console.log("payment_intent_id exists")
     const current_intent = await stripe.paymentIntents.retrieve(payment_intent_id)
     // if it exists then find it and update the amount. This is the sitatuion where a user has left the checkout and added more items and then come back
     if (current_intent) {
@@ -80,7 +82,7 @@ export default async function handler(
             amount: calculateOrderAmount(items),
             products: {
               deleteMany: {},
-              create: items.map((item) => ({
+              create: items.map((item: any) => ({
                 name: item.name,
                 description: item.description || null,
                 unit_amount: parseFloat(item.unit_amount),

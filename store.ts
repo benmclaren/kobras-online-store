@@ -33,7 +33,7 @@ export const useCartStore = create<CartState>() (
       cart: [],
       isOpen: false,
       paymentIntent: "",
-      // this is for when you clikc on the checkout button and want to render a different component
+      // this is for when you click on the checkout button and want to render a different component
       onCheckout: "cart",
       // modify isOpen to be opposite of what it is. Toggles true and false
       toggleCart: () => set((state) => ({isOpen: !state.isOpen})),
@@ -56,11 +56,11 @@ export const useCartStore = create<CartState>() (
       removeProduct: (item) => set((state) => {
         // cartItem.id is from the state and item.id is being passed down as props
         const existingItem = state.cart.find(cartItem => cartItem.id === item.id)
-        console.log(existingItem)
-        if(existingItem && existingItem.quantity > 1) {
+        // console.log(existingItem)
+        if(existingItem && existingItem.quantity! > 1) {
           const updatedCart = state.cart.map((cartItem) => {
             if(cartItem.id === item.id){
-              return {...cartItem, quantity: cartItem.quantity -1}
+              return {...cartItem, quantity: cartItem.quantity! -1}
             }
             return cartItem
           })
@@ -69,11 +69,11 @@ export const useCartStore = create<CartState>() (
           // remove item from cart
           // filteredCart returns items thats id does not match the original id
           const filteredCart = state.cart.filter((cartItem) => cartItem.id !== item.id)
-          console.log(filteredCart)
+          // console.log(filteredCart)
           return { cart: filteredCart }
         }
       }),
-      setPaymentIntent: (val) => set((state) => ({paymentIntent: val})),
+      setPaymentIntent: (val) => set((state) => ({ ...state, paymentIntent: val })),
       setCheckout: (val) => set((state) => ({onCheckout: val})),
     }),
     // custom name of the data
