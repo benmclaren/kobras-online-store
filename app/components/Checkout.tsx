@@ -42,7 +42,7 @@ export default function Checkout(){
 const options: StripeElementsOptions = {
   clientSecret,
   appearance: {
-    theme: "stripe",
+    theme: "flat",
     labels: "floating",
   },
 }
