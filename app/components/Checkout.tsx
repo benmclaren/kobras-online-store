@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import CheckoutForm  from './CheckoutForm'
 import OrderAnimation from './OrderAnimation'
+import { motion } from 'framer-motion'
 
 // need the NEXT_PUBLIC as we are rendering on client side.Not needed when server component
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
@@ -53,11 +54,11 @@ const options: StripeElementsOptions = {
     <div>
       {!clientSecret && <OrderAnimation/>}
       {  clientSecret && (
-        <div>
+        <motion.div initial={{opacity: 0}} animate={{opacity: 1}}>
           <Elements options={options} stripe={stripePromise}>
             <CheckoutForm clientSecret={clientSecret}/>
           </Elements>
-        </div>
+        </motion.div>
       )}
     </div>
   )
