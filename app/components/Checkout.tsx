@@ -6,6 +6,7 @@ import { useCartStore } from '@/store'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import CheckoutForm  from './CheckoutForm'
+import OrderAnimation from './OrderAnimation'
 
 // need the NEXT_PUBLIC as we are rendering on client side.Not needed when server component
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
@@ -50,6 +51,7 @@ const options: StripeElementsOptions = {
   // client secret needed to authorise tranaction
   return (
     <div>
+      {!clientSecret && <OrderAnimation/>}
       {  clientSecret && (
         <div>
           <Elements options={options} stripe={stripePromise}>
