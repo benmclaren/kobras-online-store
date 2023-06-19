@@ -8,7 +8,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 export const config ={
   api: {
     bodyParser: false,
-  }
+  },
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -26,6 +26,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse){
   }
 
   let event: Stripe.Event
+  // Handles different types of events
 
   try{
     event = stripe.webhooks.constructEvent(
@@ -45,7 +46,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse){
       const charge = event.data.object as Stripe.Charge
       if(typeof charge.payment_intent === 'string') {
         const order = await prisma.order.update({
-          where: { paymentIntentID: charge.payment_intent },
+          where: { paymentIntentId: charge.payment_intent },
           data: { status: "complete" }
         })
       }
