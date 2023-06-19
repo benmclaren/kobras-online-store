@@ -15,8 +15,9 @@ const fetchOrders = async () => {
    return null
   }
   const orders = await prisma.order.findMany({
+    // status complete only shows completed orders
     where: {
-      userId: user?.user?.id
+      userId: user?.user?.id, status: "complete"
     },
     include: {
       products: true
@@ -27,7 +28,7 @@ const fetchOrders = async () => {
 
 export default async function Dashboard(){
   const orders = await fetchOrders()
-  console.log(typeof orders)
+  console.log(orders)
   if(orders === null)
   return <div>Must be logged in</div>
   if(orders.length === 0) {
@@ -40,21 +41,22 @@ export default async function Dashboard(){
         { orders.map((order) => (
           <div key={ order.id } className="rounded-lg p-8 my-12">
             <h2>Order reference: {order.id}</h2>
-            {/* <p>Time: {new Date(order.createdDate)}</p> */}
             <p className="text-md py-2">
               Status: {" "}
               <span 
                 className={`${
                   order.status === 'complete' ? "bg-teal-500" : "bg-orange-500"
                 } text-white py-1 rounded-md px-2 mx-2 text-sm`}
-              >
+                >
                 {order.status}
               </span>
             </p>
+            {/*  .toString() to fix error with reactNode*/}
+            <p>Time: {new Date(order.createdDate).toString()}</p>
             <p className="font-medium">Total: {formatPrice(order.amount)}</p>
-            <div className="flex gap-8">
+            <div className="text-sm lg:flex gap-2">
               {order.products.map((product) => 
-                <div className="py-2" key={product.id}>
+                <div className="py-2 " key={product.id}>
                   <h2 className="py-2">{product.name}</h2>
                   <div className="flex items-center gap-4">
                     <Image 
