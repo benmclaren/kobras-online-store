@@ -1,3 +1,4 @@
+// to fetch and display the orders from the user
 export default function Dashboard(){
   return(
     <div>
