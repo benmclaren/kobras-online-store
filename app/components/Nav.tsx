@@ -41,17 +41,44 @@ export default function Nav({ user }: Session){
           </li>
         )}
         {user && (
-          <Link href={"/dashboard"}>
-            <li>
+          <li>
+            <div className="dropdown dropdown-end cursor-pointer">
               <Image 
                 src={user?.image as string} 
                 alt={user.name as string} 
                 width={36} 
                 height={36}
                 className="rounded-full"
+                tabIndex={0}
               />
-            </li>
-          </Link>
+              <ul 
+                tabIndex={0} 
+                className="dropdown-content menu p-4 space-y-4 shadow bg-base-100 rounded-box w-72" 
+              >
+                <Link 
+                  className="hover:bg-base-300 p-4 rounded-md" 
+                  href={'/dashboard'}
+                  onClick={() => {
+                    if(document.activeElement instanceof HTMLElement) {
+                      document.activeElement.blur()
+                    }
+                  }}
+                >
+                  Orders
+                </Link>
+                <li 
+                  className="hover:bg-base-300 p-4 rounded-md"
+                  onClick={() => {
+                    if(document.activeElement instanceof HTMLElement) {
+                      document.activeElement.blur()
+                    }
+                  }}
+                >
+                  Sign Out
+                </li>
+              </ul>
+            </div>
+          </li>
         )}
       </ul>
       {/* If cart is open then show it on the screen */}
