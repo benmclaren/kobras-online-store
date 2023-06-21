@@ -1,13 +1,15 @@
 'use client'
 
 import { Session } from "next-auth"
-import { signIn } from 'next-auth/react'
+import { signIn, signOut } from 'next-auth/react'
 import Image from "next/image"
 import Link from "next/link"
 import Cart from "./Cart"
 import { useCartStore } from "@/store"
 import { AiFillShopping } from "react-icons/ai"
 import { motion, AnimatePresence } from "framer-motion"
+import DarkLight from "./DarkLight"
+
 
 export default function Nav({ user }: Session){
   const cartStore = useCartStore()
@@ -35,6 +37,8 @@ export default function Nav({ user }: Session){
             )}
           </AnimatePresence>
         </li>
+        {/* Dark mode */}
+        <DarkLight/>
         {!user && (
           <li className="bg-primary py-2 text-white px-4 rounded-md">
             <button onClick={() => signIn()}> Sign In</button>
@@ -69,6 +73,7 @@ export default function Nav({ user }: Session){
                 <li 
                   className="hover:bg-base-300 p-4 rounded-md"
                   onClick={() => {
+                    signOut()
                     if(document.activeElement instanceof HTMLElement) {
                       document.activeElement.blur()
                     }
