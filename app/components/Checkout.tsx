@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import CheckoutForm  from './CheckoutForm'
 import OrderAnimation from './OrderAnimation'
 import { motion } from 'framer-motion'
+import { useThemestore } from '@/store'
 
 // need the NEXT_PUBLIC as we are rendering on client side.Not needed when server component
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
@@ -17,8 +18,19 @@ export default function Checkout(){
   // clientSecret is a key unique to the individual
   const [clientSecret, setClientSecret] = useState("")
   const router = useRouter()
+  const themeStore = useThemestore()
+  // required to tell the theme the options it can use
+  const [stripeTheme, setStripeTheme] = useState<
+    "flat" | "stripe" | "night" | "none"
+  >('stripe')
 
   useEffect(() => {
+    // set the theme of stripe
+    if (themeStore.mode === "light") {
+      setStripeTheme("stripe")
+    } else {
+      setStripeTheme("night")
+    }
     // create a payment intent as soon as the page loads. Only one payment should be created so that you can return to same checkout after adding/removing items. By default stripe would create a new order everytime which we do not want
     fetch('/api/create-payment-intent', {
       method: "POST",
@@ -44,7 +56,7 @@ export default function Checkout(){
 const options: StripeElementsOptions = {
   clientSecret,
   appearance: {
-    theme: "flat",
+    theme: stripeTheme,
     labels: "floating",
   },
 }
