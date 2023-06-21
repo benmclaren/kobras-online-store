@@ -1,13 +1,28 @@
 'use client'
 
+import { useThemestore } from "@/store"
+
 export default function DarkLight() {
+  const themeStore = useThemestore()
+
   return(
     <label className="swap swap-rotate">
   
       {/* this hidden checkbox controls the state */}
-      <input type="checkbox" />
+      <input
+        defaultChecked={themeStore.mode === "light" ? false : true}
+        type="checkbox" 
+        onClick={() => {
+          if(themeStore.mode === 'light') {
+            themeStore.toggleMode("dark")
+          } else {
+            themeStore.toggleMode("light")
+          }
+        }}
+      />
       
       {/* sun icon */}
+      {/* swap-on is activated and swap-off is disabled */}
       <svg 
         className="swap-on fill-current w-8 h-8" 
         xmlns="http://www.w3.org/2000/svg" 

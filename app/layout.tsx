@@ -22,15 +22,13 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   // console.log(session)
   return (
-    <html lang="en" data-theme="light">
-      {/* adding global font */}
-      <body className={`mx-4 lg:mx-48 ${roboto.className}`}>
+    <html className={`${roboto.className}`} lang="en">
+      {/* adding global font */}  
         {/* {Passing nav the user and when the session expires} */}
-        <Hydrate>
-          <Nav user={session?.user} expires={session?.expires as string}/>
-          {children}
-        </Hydrate>
-      </body>
+      <Hydrate>
+        <Nav user={session?.user} expires={session?.expires as string}/>
+        {children}
+      </Hydrate>
     </html>
   )
 }
