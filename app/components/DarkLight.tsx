@@ -10,13 +10,13 @@ export default function DarkLight() {
   
       {/* this hidden checkbox controls the state */}
       <input
-        defaultChecked={themeStore.mode === "light" ? false : true}
+        defaultChecked={themeStore.mode === "cupcake" ? false : true}
         type="checkbox" 
         onClick={() => {
-          if(themeStore.mode === 'light') {
-            themeStore.toggleMode("dark")
+          if(themeStore.mode === 'cupcake') {
+            themeStore.toggleMode("night")
           } else {
-            themeStore.toggleMode("light")
+            themeStore.toggleMode("cupcake")
           }
         }}
       />
