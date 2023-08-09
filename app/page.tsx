@@ -1,6 +1,7 @@
 import { log } from "console"
 import Stripe from "stripe"
 import Product from "./components/Product"
+import Hero from "./components/Hero"
 
 const getProducts = async () => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -31,10 +32,14 @@ export default async function Home() {
   const products = await getProducts()
   // console.log(products)
   return (
-   <main className="grid grid-cols-5 gap-12">
-    {products.map((product) => (
-      <Product {...product} />
-    ))}
-   </main>
+    <div>
+      <Hero/>
+      <main className="grid grid-cols-5 gap-12">
+        
+        {products.map((product) => (
+          <Product {...product} />
+        ))}
+      </main>
+    </div>
   )
 }

@@ -18,7 +18,7 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["wireframe", "night"],
+    themes: ["synthwave", "cyberpunk"],
   },
 }
 

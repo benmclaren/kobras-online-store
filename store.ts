@@ -85,14 +85,14 @@ export const useCartStore = create<CartState>() (
 )
 
 type ThemeState = {
-  mode: 'cupcake' | 'night',
-  toggleMode: (theme: "cupcake" | "night") => void
+  mode: 'synthwave' | 'cyberpunk',
+  toggleMode: (theme: "synthwave" | "cyberpunk") => void
 }
 
 export const useThemestore = create<ThemeState>()(
   persist(
     (set) => ({
-      mode: 'cupcake',
+      mode: 'synthwave',
       toggleMode: (theme) => set((state) => ({mode: theme})),
     }),
     {name: 'theme-store'}
