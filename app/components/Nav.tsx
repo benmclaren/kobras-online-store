@@ -3,6 +3,7 @@
 import { Session } from "next-auth"
 import { signIn, signOut } from 'next-auth/react'
 import Image from "next/image"
+import kobrasbadge from '/public/kobrasbadge.png'
 import Link from "next/link"
 import Cart from "./Cart"
 import { useCartStore } from "@/store"
@@ -20,6 +21,7 @@ export default function Nav({ user }: Session){
           KobraKards.
         </h1>
       </Link>
+      <img src="/kobrasbadge.png" alt="" />
       <ul className="flex items-center gap-12">
         {/* If user is not signed in then show btn to sign in */}
         <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
