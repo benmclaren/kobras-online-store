@@ -3,6 +3,7 @@
 import { Session } from "next-auth"
 import { signIn, signOut } from 'next-auth/react'
 import Image from "next/image"
+import kobrasbadge from '/public/kobrasbadge.png'
 import Link from "next/link"
 import Cart from "./Cart"
 import { useCartStore } from "@/store"
@@ -15,11 +16,19 @@ export default function Nav({ user }: Session){
   const cartStore = useCartStore()
   return(
     <nav className="flex justify-between items-center py-8">
-      <Link href={"/"}>
-        <h1 className="font-lobster text-xl">
-          Outgoing Kobras FC
-        </h1>
-      </Link>
+      <div className="flex justify-between">
+        <Link href={"/"}>
+          <h2 className="font-roboto text-xl px-8">
+            Home
+          </h2>
+        </Link>
+        <Link href={"/products"}>
+          <h2 className="font-roboto text-xl">
+            Products
+          </h2>
+        </Link>
+      </div>
+      <img src="/kobrasbadge.png" alt="" />
       <ul className="flex items-center gap-12">
         {/* If user is not signed in then show btn to sign in */}
         <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
