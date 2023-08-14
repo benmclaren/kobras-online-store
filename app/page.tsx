@@ -34,10 +34,10 @@ export default async function Home() {
   return (
     <div>
       <Hero/>
+      <h2>Featured Players</h2>
       <main className="grid grid-cols-5 gap-12">
-        
-        {products.map((product) => (
-          <Product {...product} />
+        {products.filter((item, index) => index < 5).map((filteredItem) => (
+          <Product {...filteredItem} />
         ))}
       </main>
     </div>
