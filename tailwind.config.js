@@ -13,6 +13,10 @@ module.exports = {
       fontFamily: {
         lobster: ['var(--font-lobster)'],
         roboto: ['var(--font-roboto)'],
+      },
+      colors: {
+        'color-secondary': '#FDE155',
+        'color-primary': '#080060'
       }
     },
   },

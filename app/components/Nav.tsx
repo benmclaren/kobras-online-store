@@ -17,13 +17,13 @@ export default function Nav({ user }: Session){
   return(
     <nav className="flex justify-between items-center py-2 md:py-8">
       <div className="flex justify-between">
-        <Link href={"/"}>
-          <h2 className="font-roboto text-base md:text-xl px-2 md:px-8">
+        <Link href={"/"} className="hover:text-color-secondary transition duration-75">
+          <h2 className="font-roboto font-medium text-base md:text-xl px-2 md:px-8 ">
             Home
           </h2>
         </Link>
-        <Link href={"/products"}>
-          <h2 className="font-roboto text-base md:text-xl">
+        <Link href={"/products"} className="hover:text-color-secondary duration-75">
+          <h2 className="font-roboto font-medium text-base md:text-xl">
             Products
           </h2>
         </Link>
@@ -33,7 +33,7 @@ export default function Nav({ user }: Session){
         {/* If user is not signed in then show btn to sign in */}
         <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
           {/*  react shoping cart icon */}
-          <AiFillShopping />
+          <AiFillShopping className="hover:text-color-secondary transition duration-75" />
           <AnimatePresence>
             {cartStore.cart.length > 0 && (
               <motion.span 
