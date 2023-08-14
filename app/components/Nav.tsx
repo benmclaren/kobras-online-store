@@ -16,11 +16,18 @@ export default function Nav({ user }: Session){
   const cartStore = useCartStore()
   return(
     <nav className="flex justify-between items-center py-8">
-      <Link href={"/"}>
-        <h1 className="font-roboto text-xl">
-          KobraKards.
-        </h1>
-      </Link>
+      <div className="flex justify-between">
+        <Link href={"/"}>
+          <h2 className="font-roboto text-xl px-8">
+            Home
+          </h2>
+        </Link>
+        <Link href={"/products"}>
+          <h2 className="font-roboto text-xl">
+            Products
+          </h2>
+        </Link>
+      </div>
       <img src="/kobrasbadge.png" alt="" />
       <ul className="flex items-center gap-12">
         {/* If user is not signed in then show btn to sign in */}

@@ -11,7 +11,7 @@ export default function Product({name, image, unit_amount, id, description, meta
   return(
     <Link href={{pathname: `/products/${id}`, query: { name, image, unit_amount, queryId, description, features }}}>
       <div className="text-gray-700">
-        <Image src={image} alt={name} width={100} height={100} className="w-full object-cover rounded-lg"/>
+        <Image src={image} alt={name} width={200} height={200} className="content-center text-center sm:w-full object-cover rounded-lg"/>
         <div className="font-medium py-2">
           <h1>{name}</h1>
           <h2 className="text-sm text-teal-700">{unit_amount !== null ? formatPrice(unit_amount) : "N/A"}</h2>

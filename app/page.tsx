@@ -34,8 +34,8 @@ export default async function Home() {
   return (
     <div>
       <Hero/>
-      <h2>Featured Players</h2>
-      <main className="grid grid-cols-5 gap-12">
+      <h2 className="text-3xl py-8">Featured Players</h2>
+      <main className="place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-12">
         {products.filter((item, index) => index < 5).map((filteredItem) => (
           <Product {...filteredItem} />
         ))}
