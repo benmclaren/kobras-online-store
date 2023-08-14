@@ -15,21 +15,21 @@ import DarkLight from "./DarkLight"
 export default function Nav({ user }: Session){
   const cartStore = useCartStore()
   return(
-    <nav className="flex justify-between items-center py-8">
+    <nav className="flex justify-between items-center py-2 md:py-8">
       <div className="flex justify-between">
         <Link href={"/"}>
-          <h2 className="font-roboto text-xl px-8">
+          <h2 className="font-roboto text-base md:text-xl px-2 md:px-8">
             Home
           </h2>
         </Link>
         <Link href={"/products"}>
-          <h2 className="font-roboto text-xl">
+          <h2 className="font-roboto text-base md:text-xl">
             Products
           </h2>
         </Link>
       </div>
       <img src="/kobrasbadge.png" alt="Outgoing Kobras FC badge" className="w-[80px] sm:w-[100px] md:w-[150px]"/>
-      <ul className="flex items-center gap-12">
+      <ul className="flex items-center gap-4 md:gap-12">
         {/* If user is not signed in then show btn to sign in */}
         <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
           {/*  react shoping cart icon */}
