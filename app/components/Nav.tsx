@@ -28,7 +28,7 @@ export default function Nav({ user }: Session){
           </h2>
         </Link>
       </div>
-      <img src="/kobrasbadge.png" alt="" />
+      <img src="/kobrasbadge.png" alt="Outgoing Kobras FC badge" className="w-[80px] sm:w-[100px] md:w-[150px]"/>
       <ul className="flex items-center gap-12">
         {/* If user is not signed in then show btn to sign in */}
         <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
