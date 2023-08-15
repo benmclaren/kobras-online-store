@@ -8,6 +8,7 @@ import Link from "next/link"
 import Cart from "./Cart"
 import { useCartStore } from "@/store"
 import { AiFillShopping } from "react-icons/ai"
+import { BsFillPersonFill } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion"
 import DarkLight from "./DarkLight"
 
@@ -49,8 +50,10 @@ export default function Nav({ user }: Session){
         {/* Dark mode */}
         <DarkLight/>
         {!user && (
-          <li className="bg-color-secondary py-2 text-black px-4 rounded-md">
-            <button onClick={() => signIn()}> Sign In</button>
+          <li className="flex items-center text-3xl relative cursor-pointer">
+            <button onClick={() => signIn()}>
+              <BsFillPersonFill className="hover:text-color-secondary transition duration-75" />
+            </button>
           </li>
         )}
         {user && (
