@@ -13,18 +13,19 @@ import { motion, AnimatePresence } from "framer-motion"
 import DarkLight from "./DarkLight"
 
 
+
 export default function Nav({ user }: Session){
   const cartStore = useCartStore()
   return(
     <nav className="flex justify-between items-center py-2 md:py-8">
       <div className="flex justify-between">
         <Link href={"/"} className="hover:text-color-secondary transition duration-75">
-          <h2 className="font-roboto font-medium text-base md:text-xl pr-4 ">
+          <h2 className="font-nohemi font-medium text-base md:text-xl pr-4 ">
             Home
           </h2>
         </Link>
         <Link href={"/products"} className="hover:text-color-secondary duration-75">
-          <h2 className="font-roboto font-medium text-base md:text-xl">
+          <h2 className="font-nohemi font-medium text-base md:text-xl">
             Products
           </h2>
         </Link>

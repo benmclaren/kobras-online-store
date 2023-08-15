@@ -13,6 +13,7 @@ module.exports = {
       fontFamily: {
         lobster: ['var(--font-lobster)'],
         roboto: ['var(--font-roboto)'],
+        nohemi: ['Nohemi', 'san-serif']
       },
       colors: {
         'color-secondary': '#FDE155',

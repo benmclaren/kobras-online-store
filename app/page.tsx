@@ -3,6 +3,7 @@ import Stripe from "stripe"
 import Product from "./components/Product"
 import Hero from "./components/Hero"
 
+
 const getProducts = async () => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2022-11-15",
