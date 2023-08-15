@@ -19,7 +19,7 @@ export default function Nav({ user }: Session){
     <nav className="flex justify-between items-center py-2 md:py-8">
       <div className="flex justify-between">
         <Link href={"/"} className="hover:text-color-secondary transition duration-75">
-          <h2 className="font-roboto font-medium text-base md:text-xl px-2 md:px-8 ">
+          <h2 className="font-roboto font-medium text-base md:text-xl pr-4 ">
             Home
           </h2>
         </Link>
