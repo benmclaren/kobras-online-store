@@ -49,7 +49,7 @@ export default function Nav({ user }: Session){
         {/* Dark mode */}
         <DarkLight/>
         {!user && (
-          <li className="bg-primary py-2 text-white px-4 rounded-md">
+          <li className="bg-color-secondary py-2 text-black px-4 rounded-md">
             <button onClick={() => signIn()}> Sign In</button>
           </li>
         )}
