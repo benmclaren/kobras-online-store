@@ -35,7 +35,7 @@ export default async function Home() {
     <div>
       <Hero/>
       <h2 className="text-3xl py-8">Featured Players</h2>  
-      <main className="carousel carousel-end rounded-box place-items-center flex grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-12">
+      <main className="snap-mandatory carousel carousel-center rounded-box place-items-center flex justify-between gap-12">
         {products.filter((item, index) => index < 5).map((filteredItem) => (
           <Product {...filteredItem} />
           ))}
