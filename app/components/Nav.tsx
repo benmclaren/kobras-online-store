@@ -30,7 +30,9 @@ export default function Nav({ user }: Session){
         </Link>
       </div>
       <img src="/kobrasbadge.png" alt="Outgoing Kobras FC badge" className="w-[80px] sm:w-[100px] md:w-[150px]"/>
-      <ul className="flex items-center gap-4 md:gap-12">
+      <ul className="flex items-center gap-2 md:gap-8">
+        {/* Dark mode */}
+        <DarkLight/>
         {/* If user is not signed in then show btn to sign in */}
         <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
           {/*  react shoping cart icon */}
@@ -47,8 +49,6 @@ export default function Nav({ user }: Session){
             )}
           </AnimatePresence>
         </li>
-        {/* Dark mode */}
-        <DarkLight/>
         {!user && (
           <li className="flex items-center text-3xl relative cursor-pointer">
             <button onClick={() => signIn()}>
@@ -57,14 +57,14 @@ export default function Nav({ user }: Session){
           </li>
         )}
         {user && (
-          <li>
+          <li className="flex">
             <div className="dropdown dropdown-end cursor-pointer">
               <Image 
                 src={user?.image as string} 
                 alt={user.name as string} 
-                width={36} 
-                height={36}
-                className="rounded-full"
+                width={30} 
+                height={30}
+                className="rounded-full md:h-[36px] md:w-[36px] "
                 tabIndex={0}
               />
               <ul 
