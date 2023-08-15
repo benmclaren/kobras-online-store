@@ -8,6 +8,7 @@ import Link from "next/link"
 import Cart from "./Cart"
 import { useCartStore } from "@/store"
 import { AiFillShopping } from "react-icons/ai"
+import { BsFillPersonFill } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion"
 import DarkLight from "./DarkLight"
 
@@ -18,7 +19,7 @@ export default function Nav({ user }: Session){
     <nav className="flex justify-between items-center py-2 md:py-8">
       <div className="flex justify-between">
         <Link href={"/"} className="hover:text-color-secondary transition duration-75">
-          <h2 className="font-roboto font-medium text-base md:text-xl px-2 md:px-8 ">
+          <h2 className="font-roboto font-medium text-base md:text-xl pr-4 ">
             Home
           </h2>
         </Link>
@@ -29,7 +30,9 @@ export default function Nav({ user }: Session){
         </Link>
       </div>
       <img src="/kobrasbadge.png" alt="Outgoing Kobras FC badge" className="w-[80px] sm:w-[100px] md:w-[150px]"/>
-      <ul className="flex items-center gap-4 md:gap-12">
+      <ul className="flex items-center gap-2 md:gap-8">
+        {/* Dark mode */}
+        <DarkLight/>
         {/* If user is not signed in then show btn to sign in */}
         <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
           {/*  react shoping cart icon */}
@@ -46,22 +49,22 @@ export default function Nav({ user }: Session){
             )}
           </AnimatePresence>
         </li>
-        {/* Dark mode */}
-        <DarkLight/>
         {!user && (
-          <li className="bg-primary py-2 text-white px-4 rounded-md">
-            <button onClick={() => signIn()}> Sign In</button>
+          <li className="flex items-center text-3xl relative cursor-pointer">
+            <button onClick={() => signIn()}>
+              <BsFillPersonFill className="hover:text-color-secondary transition duration-75" />
+            </button>
           </li>
         )}
         {user && (
-          <li>
+          <li className="flex">
             <div className="dropdown dropdown-end cursor-pointer">
               <Image 
                 src={user?.image as string} 
                 alt={user.name as string} 
-                width={36} 
-                height={36}
-                className="rounded-full"
+                width={30} 
+                height={30}
+                className="rounded-full md:h-[36px] md:w-[36px] "
                 tabIndex={0}
               />
               <ul 
