@@ -9,7 +9,7 @@ export default function Product({name, image, unit_amount, id, description, meta
   const { features } = metadata
   const queryId = id
   return(
-    <Link href={{pathname: `/products/${id}`, query: { name, image, unit_amount, queryId, description, features }}}>
+    <Link href={{pathname: `/products/${id}`, query: { name, image, unit_amount, queryId, description, features }}} className="carousel-item">
       <div className="text-gray-700">
         <Image src={image} alt={name} width={200} height={200} className="content-center text-center sm:w-full object-cover rounded-lg"/>
         <div className="font-medium py-2">
