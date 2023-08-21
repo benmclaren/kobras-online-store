@@ -1,8 +1,5 @@
-import { log } from "console"
 import Stripe from "stripe"
-import Product from "./components/Product"
-import Hero from "./components/Hero"
-
+import Product from "../components/Product"
 
 const getProducts = async () => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -29,19 +26,15 @@ const getProducts = async () => {
   return productsWithPrices
 }
 
-export default async function Home() {
+export default async function Directory(){
   const products = await getProducts()
-  // console.log(products)
-  return (
+  return(
     <div>
-      <Hero/>
-      <div>
-        <h2 className="font-nohemi text-3xl py-8">Collectable Cards</h2> 
-      </div>
-      <main className="snap-mandatory carousel carousel-center rounded-box place-items-center flex justify-between gap-12">
-        {products.filter((item, index) => index < 5).map((filteredItem) => (
+      <h2 className="font-nohemi text-3xl py-8">Products</h2>
+      <main className="place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-12">
+        {products.map((filteredItem) => (
           <Product {...filteredItem} />
-          ))}
+        ))}
       </main>
     </div>
   )
