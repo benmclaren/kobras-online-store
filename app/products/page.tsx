@@ -30,7 +30,7 @@ export default async function Directory(){
   const products = await getProducts()
   return(
     <div>
-      <h1>Products page</h1>
+      <h2 className="font-nohemi text-3xl py-8">Products</h2>
       <main className="place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-12">
         {products.map((filteredItem) => (
           <Product {...filteredItem} />
