@@ -3,6 +3,7 @@ import Stripe from "stripe"
 import Product from "./components/Product"
 import Hero from "./components/Hero"
 
+
 const getProducts = async () => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2022-11-15",
@@ -34,7 +35,7 @@ export default async function Home() {
   return (
     <div>
       <Hero/>
-      <h2 className="text-3xl py-8">Featured Players</h2>
+      <h2 className="font-nohemi text-3xl py-8">Featured Players</h2>
       <main className="place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-12">
         {products.filter((item, index) => index < 5).map((filteredItem) => (
           <Product {...filteredItem} />
