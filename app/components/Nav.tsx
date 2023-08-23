@@ -12,8 +12,6 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { motion, AnimatePresence } from "framer-motion"
 import DarkLight from "./DarkLight"
 
-
-
 export default function Nav({ user }: Session){
   const cartStore = useCartStore()
   return(
